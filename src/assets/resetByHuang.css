@@ -128,7 +128,7 @@ img {
 	height:2.1875rem;
 	background: #fff;
 }
-#app ul{
+/* #app ul{
 	float:left;
 	width:60%;
 	display: flex;
@@ -138,8 +138,8 @@ img {
 	height:2.1875rem;
 	padding:0px 10px;
 	flex:1;
-}
-#app a{
+} */
+/* #app a{
 	float:left;
 	width:40px;
 	font-size: 1rem;
@@ -147,10 +147,10 @@ img {
 	height:2.1875rem;
 	line-height:2.1875rem;
 	color:#666;
-}
-#app ul li a{
+} */
+/* #app ul li a{
 	width:2rem;
-}
+} */
 #app .back{
 	width:20%;
 	padding-left:0.5rem;
