@@ -34,8 +34,11 @@ export default {
   },
   created() {
     var self = this;
-    this.$http.get("http://120.27.21.136:2798/user/houseType/detail?id=1").then(function(response) {
-      // console.log(response.data.data.baseInfo)
+    let id = this.$route.query.id
+    // console.log(this.$route.query)
+    this.$http.get("http://120.27.21.136:2798/user/houseType/detail?id=" + id).then(function(response) {
+        console.log('!@#$%^&*&^%@#$%^&*((*&%^&*')
+      console.log(response.data.data.baseInfo)
       self.detail = response.data.data.baseInfo
       response.data.data.imgInfo.forEach(element => {
         self.tags.push(element.type_name)

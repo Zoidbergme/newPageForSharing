@@ -8,8 +8,8 @@
 						<img src="../assets/log.gif" alt="" />
 					</div>
 					<div class="head_text">
-						<h4>找新房&nbsp;上运算</h4>
-						<p>选房&nbsp;抢房&nbsp;线上开盘一条龙服务</p>
+						<h4>找新房&nbsp;上云算</h4>
+						<p>渠道&nbsp;分销&nbsp;专业房产平台</p>
 					</div>
 					<a class="downLoad" v-bind:href="'http://'+project_base_info.yunsuan_url">下载APP</a>
 				</div>
@@ -130,7 +130,7 @@
 						<a href="#">查看全部>></a>
 					</div>
 					<div class="house_type">
-						<div v-for="(house,index) in house_type " v-if="index < 3" class="house_type_content" :key="index">
+						<div v-for="(house,index) in house_type " v-if="index < 3" class="house_type_content" :key="index" @click="getMoreDetails(house)">
 							<img v-bind:src="'http://120.27.21.136:2798/'+house.img_url" />
 							<div>
 								<p class="house_named">{{house.house_type_name}}</p>
@@ -204,6 +204,13 @@ export default {
     };
   },
   methods: {
+    getMoreDetails(house){
+      let id = house.id
+      this.$router.push({name:'estatedetail',query:{id}})
+      // this.$router.push({
+
+      // })
+    },
     hided() {
       this.show = false;
     },
@@ -250,6 +257,7 @@ export default {
     }
   },
   created() {
+    // alert(Math.random()+"sadasdadasdadasda")
     var _this = this;
     this.project_id = this.GetQueryString("project_id");
     this.project_id = this.project_id === null ? 1 : this.project_id;
