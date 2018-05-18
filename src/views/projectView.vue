@@ -82,7 +82,7 @@
 			<div class="bulding_info">
 				<div class="head_mod">
 					<h3>楼盘信息</h3>
-					<a href="#">查看全部>></a>
+					<a href="#" @click="checkPropertyDetail">查看全部>></a>
 				</div>
 				<div class="info_detail">
 					<div class="info_content">
@@ -106,7 +106,7 @@
 			<div class="project_news">
 				<div class="head_mod">
 					<h3>
-						<font class="title">项目信息</font>&nbsp;
+						<font class="title">项目动态</font>&nbsp;
 						<font style="color:#4CA0FF;">(共{{dynamic.count}}条)</font>
 					</h3>
 					<a href="#">查看全部>></a>
@@ -211,6 +211,10 @@ export default {
 
       // })
     },
+    checkPropertyDetail(){
+      let id = this.project_base_info.project_id
+      this.$router.push({name:'propertyInformation',query:{id}})
+    },
     hided() {
       this.show = false;
     },
@@ -265,14 +269,15 @@ export default {
       "http://120.27.21.136:2798/user/project/detail?project_id=" +
       this.project_id +
       "&agent_id=0";
-    console.log(url);
+    // console.log(url);
     $.ajax({
       url: url,
       async: "false",
       type: "get",
       dataType: "json",
       success: function(res) {
-        console.log(res);
+        // console.log("AAAAAAAAAAAAAAAAAAAAAAAAA")
+        // console.log(res);
         _this.data = res.data;
         _this.dynamic = res.data.dynamic;
         _this.focus = res.data.focus;

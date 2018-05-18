@@ -40,10 +40,15 @@ export default {
         console.log('!@#$%^&*&^%@#$%^&*((*&%^&*')
       console.log(response.data.data.baseInfo)
       self.detail = response.data.data.baseInfo
+        let res = []
       response.data.data.imgInfo.forEach(element => {
-        self.tags.push(element.type_name)
-        self.listImg.push(element.data)
+        // self.tags.push(element.type_name)
+        self.tags.push(element.type)
+        res.push(element.list)
+        self.listImg.push(element.list)
       });
+        console.log('look!!!!!!!!!!!!!!!')
+        console.log(self.listImg)
     });
   },
 

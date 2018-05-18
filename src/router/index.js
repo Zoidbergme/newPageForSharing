@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import projectView from '../views/projectView'
 import EstateDetail from '../components/EstateDetail'
+import PropertyInformation from '../components/PropertyInformation.vue'
+import NewMessage from '../components/NewMessage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -15,6 +17,14 @@ export default new Router({
       path:'/estatedetail',
       name:'estatedetail',
       component:EstateDetail
+    },{
+      path:'/propertyInformation',
+      name:'propertyInformation',
+      component:PropertyInformation
+    },{
+      path:'/newMessage',
+      name:'newMessage',
+      component:NewMessage
     }
   ]
 })
