@@ -1,58 +1,246 @@
 <template>
-    <div id="newMessage">
-        <div>
-            <!-- 导航 -->
-        </div>
-        <div class="info">
-            <ul>
-                <li v-for="(item,index) in items" :key="index" class="white">
-                    <div class="title">云算公馆参考价格5000元/m</div>
-                    <div class="time">2017-02-23</div>
-                    <div class="content">是的那就是电脑加速度静安寺疯狂撒积分卡积分卡撒反对垃圾分类看见啊浪费空间啊</div>
-                    <div class="pic" v-if="condition">
-                        <ul>
-                            <li v-for="(pic,index) in pics" :key="index"></li>
-                        </ul>
-                    </div>
-                    <div class="btn">阅读全文&nbsp;>></div>
-                    <div class="split" v-if="index !== items.length - 1"></div>
-                </li>
-            </ul>
-        </div>
+  <div id="newMessage">
+    <div class="nav">
+      <!-- 导航 -->
     </div>
+    <div class="position-box">
+      <vue-better-scroll class="wrapper" ref="scroll" :scrollbar="scrollbarObj" :pullDownRefresh="pullDownRefreshObj" :pullUpLoad="pullUpLoadObj" :startY="parseInt(startY)" @pullingDown="onPullingDown" @pullingUp="onPullingUp">
+        <ul ref="list" class="list-content">
+          <li class="list-item" v-for="(item,index) in items" :key="index">
+            <div class="title">{{item.title}}</div>
+            <div class="time">{{item.create_time}}</div>
+            <div class="content">{{item.content}}</div>
+            <div class="pic" v-if="item.withPic">
+              <ul>
+                <li v-for="(pic,index) in pics" :key="index"></li>
+              </ul>
+            </div>
+            <div class="btn">阅读全文&nbsp;>></div>
+            <div class="split" v-if="index !== items.length - 1"></div>
+          </li>
+        </ul>
+      </vue-better-scroll>
+    </div>
+
+    <!-- <div class="wrapper" ref="wrapper" style="height:300px">
+      <ul class="content">
+        <li v-for="(item,index) in items" :key="index" class="white">
+          <div class="title">云算公馆参考价格5000元/m</div>
+          <div class="time">2017-02-23</div>
+          <div class="content">是的那就是电脑加速度静安寺疯狂撒积分卡积分卡撒反对垃圾分类看见啊浪费空间啊</div>
+          <div class="pic" v-if="condition">
+            <ul>
+              <li v-for="(pic,index) in pics" :key="index"></li>
+            </ul>
+          </div>
+          <div class="btn">阅读全文&nbsp;>></div>
+          <div class="split" v-if="index !== items.length - 1"></div>
+        </li>
+      </ul>
+      <div class="loading-wrapper"></div>
+    </div> -->
+  </div>
 </template>
 
 <script>
+// import BScroll from "better-scroll";
+import VueBetterScroll from "vue2-better-scroll";
+let count = 1;
 export default {
   name: "NewMessage",
-  data: function() {
+  components: {
+    VueBetterScroll
+  },
+  data() {
     return {
-      condition: false,
-      items: ["a", "b"]
+      // 这个配置可以开启滚动条，默认为 false。当设置为 true 或者是一个 Object 的时候，都会开启滚动条，默认是会 fade 的
+      scrollbarObj: {
+        fade: true
+      },
+      // 这个配置用于做下拉刷新功能，默认为 false。当设置为 true 或者是一个 Object 的时候，可以开启下拉刷新，可以配置顶部下拉的距离（threshold） 来决定刷新时机以及回弹停留的距离（stop）
+      pullDownRefreshObj: {
+        threshold: 50,
+        stop: 40
+      },
+      // 这个配置用于做上拉加载功能，默认为 false。当设置为 true 或者是一个 Object 的时候，可以开启上拉加载，可以配置离底部距离阈值（threshold）来决定开始加载的时机
+      pullUpLoadObj: {
+        threshold: 0,
+        txt: {
+          more: "加载更多",
+          noMore: "没有更多数据了"
+        }
+      },
+      startY: 0, // 纵轴方向初始化位置
+      scrollToX: 0,
+      scrollToY: 0,
+      scrollToTime: 700,
+      items: [],
+      currentPage: null
     };
+  },
+  beforeRouteEnter: (to, from, next) => {
+    document.documentElement.style.fontSize = "initial";
+    next();
+  },
+  beforeRouteLeave: (to, from, next) => {
+    document.documentElement.style.fontSize =
+      document.documentElement.clientWidth / 10.8 + "px";
+    next();
+  },
+  methods: {
+    // loadData() {
+    //   this.$http
+    //     .get("http://120.27.21.136:2798/user/dynamic/list?project_id=1&page=1")
+    //     .then(res => {
+    //       console.log(res.data.data);
+    //       this.items = res.data.data.data.concat(this.items);
+    //       this.$nextTick(() => {
+    //         if (!this.scroll) {
+    //           this.scroll = new BScroll(this.$refs.wrapper, {});
+    //           this.scroll.on("touchEnd", pos => {
+    //             if (pos.y > 1) {
+    //               this.loadData();
+    //               console.log("asdasdadsasdada");
+    //             }
+    //           });
+    //         } else {
+    //           this.scroll.refresh();
+    //         }
+    //       });
+    //     });
+    // }
+    scrollTo() {
+      this.$refs.scroll.scrollTo(
+        this.scrollToX,
+        this.scrollToY,
+        this.scrollToTime
+      );
+    },
+    // 模拟数据请求
+    getData() {
+      // return new Promise(resolve => {
+      //   setTimeout(() => {
+      //     const arr = [];
+      //     for (let i = 0; i < 20; i++) {
+      //       arr.push(count++);
+      //     }
+      //     resolve(arr);
+      //   }, 1000);
+      // });
+      let result = this.$http
+        .get(
+          "http://120.27.21.136:2798/user/dynamic/list?project_id=1&page=" +
+            this.currentPage
+        )
+        .then(res => {
+          // console.log(res.data)
+          return res.data;
+        });
+      // console.log(res)
+      return result;
+    },
+    onPullingDown() {
+      // 模拟下拉刷新
+      this.currentPage = 1;
+      this.getData().then(res => {
+        this.lastPage = res.data.last_page;
+        this.items = res.data.data;
+        this.$refs.scroll.forceUpdate(true);
+        if (this.currentPage === this.lastPage) {
+          this.$refs.scroll.forceUpdate(false);
+          // this.pullUpLoadObj = false
+        }
+      });
+    },
+    onPullingUp() {
+      if (this.currentPage === this.lastPage) {
+        this.$refs.scroll.forceUpdate(false);
+        return;
+      }
+      // // console.log("上啦加载");
+      this.currentPage += 1;
+      this.getData().then(res => {
+        console.log(res);
+        this.items = this.items.concat(res.data.data);
+        // if (count < 50) {
+        this.$refs.scroll.forceUpdate(true);
+        // if (this.currentPage === this.lastPage) {
+        //   this.$refs.scroll.forceUpdate(false);
+        //   return;
+        // }
+        // } else {
+        //   this.$refs.scroll.forceUpdate(false);
+        // }
+      });
+    }
+  },
+  created() {
+    // this.$http.get('http://120.27.21.136:2798/user/dynamic/list?project_id=1&page=1').then(function(res){
+    //   console.log(res)
+    //   this.items = res.data
+    //   this.$nextTick(()=>{
+    //     this.scroll = new BScroll(this.$refs.wrapper,{})
+    //   })
+    // })
+    // this.loadData();
+  },
+  // mounted(){
+  //   this.$nextTick(()=>{
+  //     this.scroll = new BScroll(this.$refs.wrapper,{})
+  //   })
+  // }
+  mounted() {
+    this.onPullingDown();
   }
 };
 </script>
 
 <style scoped>
 @import "../assets/reset.css";
-.info {
+body {
+  margin: 0 !important;
+}
+.nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: red;
+}
+.position-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 20px;
+  bottom: 0;
+}
+.wrapper {
+  /* height: 100%; */
+  height: 300px;
+  /* margin-left: 0.35rem; */
+  margin-left: 8px;
+}
+/* .wrapper {
   margin-left: 0.35rem;
   background-color: #f0f0f0;
-}
+} */
 .white {
   background-color: #ffffff;
 }
 .title {
-  height: 1.5rem;
-  line-height: 1.5rem;
+  /* height: 1.5rem;
+  line-height: 1.5rem; */
+  height: 20px;
+  line-height: 20px;
   font-size: 16px;
   font-weight: bold;
 }
 .time {
   font-size: 12px;
   color: #737373;
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
+  margin-bottom: 8px;
+  margin-top: 8px;
 }
 .content {
   font-size: 14px;
@@ -60,6 +248,7 @@ export default {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+  margin-bottom: 8px;
 }
 .btn {
   font-size: 14px;
@@ -69,7 +258,12 @@ export default {
   line-height: 1.2rem;
 }
 .split {
-  height: 0.1rem;
+  height: 3px;
   background-color: #f0f0f0;
+}
+div.before-trigger canvas {
+  /* width: 0.5rem !important; */
+  /* height: 0.8rem; */
+  display: none !important;
 }
 </style>

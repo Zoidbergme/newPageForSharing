@@ -15,10 +15,12 @@
   "dependencies": {
     "ajv-keywords": "^3.2.0",
     "axios": "^0.18.0",
+    "better-scroll": "^1.11.1",
     "element-ui": "^2.3.8",
     "swiper": "^4.2.6",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-better-scroll": "^1.0.7"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

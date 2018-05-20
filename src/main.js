@@ -5,8 +5,10 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import {Button} from 'element-ui'
+import VueBetterScroll from 'vue2-better-scroll'
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
+Vue.use(VueBetterScroll)
 Vue.use(Button)
 /* eslint-disable no-new */
 new Vue({
