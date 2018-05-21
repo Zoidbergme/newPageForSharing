@@ -4,6 +4,7 @@ import projectView from '../views/projectView'
 import EstateDetail from '../components/EstateDetail'
 import PropertyInformation from '../components/PropertyInformation.vue'
 import NewMessage from '../components/NewMessage.vue'
+import MessageDetail from '../components/MessageDetail.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -25,6 +26,10 @@ export default new Router({
       path:'/newMessage',
       name:'newMessage',
       component:NewMessage
+    },{
+      path:'/messageDetail/:id',
+      name:'messageDetail',
+      component:MessageDetail
     }
   ]
 })

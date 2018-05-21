@@ -82,7 +82,7 @@
 			<div class="bulding_info">
 				<div class="head_mod">
 					<h3>楼盘信息</h3>
-					<a href="#" @click="checkPropertyDetail">查看全部>></a>
+					<a href="javascript:;" @click="checkPropertyDetail">查看全部>></a>
 				</div>
 				<div class="info_detail">
 					<div class="info_content">
@@ -109,7 +109,7 @@
 						<font class="title">项目动态</font>&nbsp;
 						<font style="color:#4CA0FF;">(共{{dynamic.count}}条)</font>
 					</h3>
-					<a href="#">查看全部>></a>
+					<a  @click="checkAllMessage">查看全部>></a>
 				</div>
 				<div class="project_notes">
 					<a class="project_content">
@@ -204,6 +204,10 @@ export default {
     };
   },
   methods: {
+    checkAllMessage(){
+      let id = this.project_base_info.project_id
+      this.$router.push({path:'newMessage',query:{project_id:id}})
+    },
     getMoreDetails(house){
       let id = house.id
       this.$router.push({name:'estatedetail',query:{id}})

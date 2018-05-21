@@ -1,6 +1,8 @@
 <template>
   <div id="newMessage">
     <div class="nav">
+      <div class="back" @click="backToProjectView"> < </div>
+      <div class="navtitle">云算公馆动态</div>
       <!-- 导航 -->
     </div>
     <div class="position-box">
@@ -15,7 +17,7 @@
                 <li v-for="(pic,index) in pics" :key="index"></li>
               </ul>
             </div>
-            <div class="btn">阅读全文&nbsp;>></div>
+            <div class="btn" @click="checkAllInfo(item.dynamic_id)">阅读全文&nbsp;>></div>
             <div class="split" v-if="index !== items.length - 1"></div>
           </li>
         </ul>
@@ -88,6 +90,15 @@ export default {
     next();
   },
   methods: {
+    backToProjectView(){
+      let project_id = this.$route.query.project_id
+      this.$router.push({name:'projectView',query:{project_id}})
+    },
+    checkAllInfo(index){
+      let project_id = this.$route.query.project_id
+      this.$router.push({name:'messageDetail',params:{id:index},query:{fromProject:project_id}})
+      // console.log(index)
+    },
     // loadData() {
     //   this.$http
     //     .get("http://120.27.21.136:2798/user/dynamic/list?project_id=1&page=1")
@@ -118,6 +129,7 @@ export default {
     },
     // 模拟数据请求
     getData() {
+      // console.log(this.$router)
       // return new Promise(resolve => {
       //   setTimeout(() => {
       //     const arr = [];
@@ -143,6 +155,7 @@ export default {
       // 模拟下拉刷新
       this.currentPage = 1;
       this.getData().then(res => {
+        console.log(res)
         this.lastPage = res.data.last_page;
         this.items = res.data.data;
         this.$refs.scroll.forceUpdate(true);
@@ -160,7 +173,7 @@ export default {
       // // console.log("上啦加载");
       this.currentPage += 1;
       this.getData().then(res => {
-        console.log(res);
+        // console.log(res);
         this.items = this.items.concat(res.data.data);
         // if (count < 50) {
         this.$refs.scroll.forceUpdate(true);
@@ -204,14 +217,14 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  height: 20px;
-  background: red;
+  height: 40px;
+  /* background: red; */
 }
 .position-box {
   position: fixed;
   left: 0;
   right: 0;
-  top: 20px;
+  top: 40px;
   bottom: 0;
 }
 .wrapper {
@@ -261,9 +274,31 @@ body {
   height: 3px;
   background-color: #f0f0f0;
 }
-div.before-trigger canvas {
+/* div.before-trigger canvas {
   /* width: 0.5rem !important; */
-  /* height: 0.8rem; */
+  /* height: 0.8rem; 
   display: none !important;
+} */
+.nav{
+  /* display: flex; */
+  text-align: center;
+  background: #ffffff;
+  z-index: 999;
+}
+.back{
+  position: absolute;
+  text-align: left;
+  top: 0;
+  left: 8px;
+  /* padding-left: 8px; */
+  line-height: 40px;
+  height: 40px;
+  font-size: 32px;
+  width: 50px
+}
+.navtitle{
+  text-align: center;
+  line-height: 40px;
+
 }
 </style>
