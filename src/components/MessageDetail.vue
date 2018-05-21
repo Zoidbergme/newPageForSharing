@@ -33,11 +33,11 @@ export default {
     };
   },
   created() {
-    console.log(this.$route.params)
+    // console.log(this.$route.params)
     this.$http
       .get("http://120.27.21.136:2798/user/dynamic/detail?id=" + this.$route.params.id)
       .then(res => {
-          console.log(res)
+          // console.log(res)
         if(res.data.data.img_url){
             this.condition = true
         }
@@ -53,7 +53,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .nav {
   position: fixed;
   top: 0;

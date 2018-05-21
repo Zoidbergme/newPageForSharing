@@ -15,7 +15,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #item {
   display: flex;
   align-items: flex-start;

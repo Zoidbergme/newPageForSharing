@@ -92,7 +92,7 @@ export default {
   methods: {
     backToProjectView(){
       let project_id = this.$route.query.project_id
-      this.$router.push({name:'projectView',query:{project_id}})
+      this.$router.push({name:'projectView',params:{id:project_id}})
     },
     checkAllInfo(index){
       let project_id = this.$route.query.project_id
@@ -230,6 +230,8 @@ body {
 .wrapper {
   /* height: 100%; */
   height: 300px;
+  /* min-height: 100vh; */
+  /* min-height: 300px; */
   /* margin-left: 0.35rem; */
   margin-left: 8px;
 }

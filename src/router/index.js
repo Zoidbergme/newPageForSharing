@@ -5,12 +5,14 @@ import EstateDetail from '../components/EstateDetail'
 import PropertyInformation from '../components/PropertyInformation.vue'
 import NewMessage from '../components/NewMessage.vue'
 import MessageDetail from '../components/MessageDetail.vue'
+import BuildingPic from '../components/BuildingPic.vue'
+import UnitDetail from '../components/UnitDetail.vue'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/projectView',
+      path: '/projectView/:id',
     	name: 'projectView',
       component: projectView
     },
@@ -30,6 +32,14 @@ export default new Router({
       path:'/messageDetail/:id',
       name:'messageDetail',
       component:MessageDetail
+    },{
+      path:'/buildingPic/:projectId/:pic',
+      name:'buildingPic',
+      component:BuildingPic
+    },{
+      path:'/unitDetail',
+      name:'unitDetail',
+      component:UnitDetail
     }
   ]
 })

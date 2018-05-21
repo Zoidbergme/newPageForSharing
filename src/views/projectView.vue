@@ -123,7 +123,7 @@
 			</div>
 			<div class="project_img">
 				<h3>楼栋信息</h3>
-				<img v-bind:src="'http://120.27.21.136:2798/'+project_base_info.total_float_url" />
+				<img v-bind:src="'http://120.27.21.136:2798/'+project_base_info.total_float_url" @click="checkBuildingPic" />
 				<div class="house_info">
 					<div class="head_mod">
 						<h3>户型信息</h3>
@@ -204,9 +204,15 @@ export default {
     };
   },
   methods: {
+    checkBuildingPic(){
+      let pic = this.data.project_basic_info.total_float_url_phone
+      let id = this.project_base_info.project_id
+      // console.log(pic)
+      this.$router.push({name:'buildingPic',params:{projectId:id,pic}})
+    },
     checkAllMessage(){
       let id = this.project_base_info.project_id
-      this.$router.push({path:'newMessage',query:{project_id:id}})
+      this.$router.push({name:'newMessage',query:{project_id:id}})
     },
     getMoreDetails(house){
       let id = house.id
@@ -280,8 +286,8 @@ export default {
       type: "get",
       dataType: "json",
       success: function(res) {
-        // console.log("AAAAAAAAAAAAAAAAAAAAAAAAA")
-        // console.log(res);
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAA")
+        console.log(res);
         _this.data = res.data;
         _this.dynamic = res.data.dynamic;
         _this.focus = res.data.focus;
