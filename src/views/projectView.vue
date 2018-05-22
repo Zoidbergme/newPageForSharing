@@ -1,36 +1,36 @@
 <template>
-	<div id="detail">
-		<div class="main" v-if="loadding">
-			<div class="main_mask" v-show="show">
-				<b class="close" v-on:click="hided">x</b>
-				<div class="middle_content">
-					<div class="log">
-						<img src="../assets/log.gif" alt="" />
-					</div>
-					<div class="head_text">
-						<h4>找新房&nbsp;上云算</h4>
-						<p>渠道&nbsp;分销&nbsp;专业房产平台</p>
-					</div>
-					<a class="downLoad" v-bind:href="'http://'+project_base_info.yunsuan_url">下载APP</a>
-				</div>
-			</div>
-			<div class="banner_images">
-				<ul>
-					<li v-for="(imgs,index) in project_img" :key="index">
-						<a href="#"><img v-bind:src="'http://120.27.21.136:2798/'+imgs.img_url" /></a>
-					</li>
+  <div id="detail">
+    <div class="main" v-if="loadding">
+      <div class="main_mask" v-show="show">
+        <b class="close" v-on:click="hided">x</b>
+        <div class="middle_content">
+          <div class="log">
+            <img src="../assets/log.gif" alt="" />
+          </div>
+          <div class="head_text">
+            <h4>找新房&nbsp;上云算</h4>
+            <p>渠道&nbsp;分销&nbsp;专业房产平台</p>
+          </div>
+          <a class="downLoad" v-bind:href="'http://'+project_base_info.yunsuan_url">下载APP</a>
+        </div>
+      </div>
+      <div class="banner_images">
+        <ul>
+          <li v-for="(imgs,index) in project_img" :key="index">
+            <a href="#"><img v-bind:src="'http://120.27.21.136:2798/'+imgs.img_url" /></a>
+          </li>
 
-				</ul>
-				<div class="show"></div>
-			</div>
-			<div class="house_detail">
-				<div class="house_name">
-					<h4>
-						<font class="house_title">{{project_base_info.developer_name}}</font>
-						<font class="house_state" style="color:#1B98FF">{{project_base_info.sale_state}}</font>
-					</h4>
-				</div>
-				<!-- <div class="house_cancle">
+        </ul>
+        <div class="show"></div>
+      </div>
+      <div class="house_detail">
+        <div class="house_name">
+          <h4>
+            <font class="house_title">{{project_base_info.developer_name}}</font>
+            <font class="house_state" style="color:#1B98FF">{{project_base_info.sale_state}}</font>
+          </h4>
+        </div>
+        <!-- <div class="house_cancle">
 					<div class="fix">
 						<div class="house_can">
 							<a v-for="(item,index) in cancle" class="normal_house" href="javascript:;" :key='index'>{{item}}</a>
@@ -66,120 +66,122 @@
           <div class="concerned">
           </div>
         </div>
-				<div class="complit_time timer_content">
-					<font>交房时间：</font>
-					<font>暂无数据</font>
-				</div>
-				<div class="house_price timer_content">
-					<font>均价：</font>
-					<font>￥{{project_base_info.average_price}}元/㎡</font>
-				</div>
-				<a href="javascript:;" class="house_local timer_content">
-					<font class="local_info" :name="project_base_info.latitude" :id="project_base_info.longitude"></font>
-					<font id="base_loacl" class="rightside">{{project_base_info.absolute_address}}</font>
-				</a>
-			</div>
-			<div class="bulding_info">
-				<div class="head_mod">
-					<h3>楼盘信息</h3>
-					<a href="javascript:;" @click="checkPropertyDetail">查看全部>></a>
-				</div>
-				<div class="info_detail">
-					<div class="info_content">
-						<font>开发商：</font>
-						<font>{{project_base_info.developer_name}}</font>
-					</div>
-					<div class="info_content">
-						<font>最新开盘：</font>
-						<font>2017年02月20日</font>
-					</div>
-					<div class="info_content">
-						<font>交房时间：</font>
-						<font>2019年02月</font>
-					</div>
-					<div class="info_content">
-						<font>产权：</font>
-						<font>70年</font>
-					</div>
-				</div>
-			</div>
-			<div class="project_news">
-				<div class="head_mod">
-					<h3>
-						<font class="title">项目动态</font>&nbsp;
-						<font style="color:#4CA0FF;">(共{{dynamic.count}}条)</font>
-					</h3>
-					<a  @click="checkAllMessage">查看全部>></a>
-				</div>
-				<div class="project_notes">
-					<a class="project_content">
-						<h2>{{dynamic.first.title}}</h2>
-						<h2>{{dynamic.first.create_time}}</h2>
-						<p id="dy_content">{{dynamic.first.content}}</p>
+        <div class="complit_time timer_content">
+          <font>交房时间：</font>
+          <font>暂无数据</font>
+        </div>
+        <div class="house_price timer_content">
+          <font>均价：</font>
+          <font>￥{{project_base_info.average_price}}元/㎡</font>
+        </div>
+        <a href="javascript:;" class="house_local timer_content">
+          <font class="local_info" :name="project_base_info.latitude" :id="project_base_info.longitude"></font>
+          <font id="base_loacl" class="rightside">{{project_base_info.absolute_address}}</font>
+        </a>
+      </div>
+      <div class="bulding_info">
+        <div class="head_mod">
+          <h3>楼盘信息</h3>
+          <a href="javascript:;" @click="checkPropertyDetail">查看全部>></a>
+        </div>
+        <div class="info_detail">
+          <div class="info_content">
+            <font>开发商：</font>
+            <font>{{project_base_info.developer_name}}</font>
+          </div>
+          <div class="info_content">
+            <font>最新开盘：</font>
+            <font>2017年02月20日</font>
+          </div>
+          <div class="info_content">
+            <font>交房时间：</font>
+            <font>2019年02月</font>
+          </div>
+          <div class="info_content">
+            <font>产权：</font>
+            <font>70年</font>
+          </div>
+        </div>
+      </div>
+      <div class="project_news">
+        <div class="head_mod">
+          <h3>
+            <font class="title">项目动态</font>&nbsp;
+            <font style="color:#4CA0FF;">(共{{dynamic.count}}条)</font>
+          </h3>
+          <a @click="checkAllMessage">查看全部>></a>
+        </div>
+        <div class="project_notes">
+          <a class="project_content">
+            <h2>{{dynamic.first.title}}</h2>
+            <h2>{{dynamic.first.create_time}}</h2>
+            <p id="dy_content">{{dynamic.first.content}}</p>
             <div class="split"></div>
-					</a>
-				</div>
+          </a>
+        </div>
 
-			</div>
-			<div class="project_img">
-				<h3>楼栋信息</h3>
-				<img v-bind:src="'http://120.27.21.136:2798/'+project_base_info.total_float_url" @click="checkBuildingPic" />
-				<div class="house_info">
-					<div class="head_mod">
-						<h3>户型信息</h3>
-						<a href="#">查看全部>></a>
-					</div>
-					<div class="house_type">
-						<div v-for="(house,index) in house_type " v-if="index < 3" class="house_type_content" :key="index" @click="getMoreDetails(house)">
-							<img v-bind:src="'http://120.27.21.136:2798/'+house.img_url" />
-							<div>
-								<p class="house_named">{{house.house_type_name}}</p>
-								<font>{{house.property_area_min}}㎡</font>
-							</div>
-							<div>{{house.house_type}}</div>
-							<div>
-								<font style="color:#1B98FF">{{house.sale_state}}</font>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="around">
-				<h3>周边及配套</h3>
-				<div id="allmap">
+      </div>
+      <div class="project_img">
+        <h3>楼栋信息</h3>
+        <img v-bind:src="'http://120.27.21.136:2798/'+project_base_info.total_float_url" @click="checkBuildingPic" />
+        <div class="house_info">
+          <div class="head_mod">
+            <h3>户型信息</h3>
+            <!-- <a href="#">查看全部>></a> -->
+          </div>
+          <div id="scroll">
+            <div class="house_type imgwrapper">
+              <div v-for="(house,index) in house_type " class="house_type_content" :key="index" @click="getMoreDetails(house)">
+                <img v-bind:src="'http://120.27.21.136:2798/'+house.img_url" />
+                <div>
+                  <p class="house_named">{{house.house_type_name}}</p>
+                  <font>{{house.property_area_min}}㎡</font>
+                </div>
+                <div>{{house.house_type}}</div>
+                <div>
+                  <font style="color:#1B98FF">{{house.sale_state}}</font>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="around">
+        <h3>周边及配套</h3>
+        <div id="allmap">
 
-				</div>
-				<ul id="map_btn">
-					<li>
-						<a @click="shoplocal($event)" href="javascript:;">
-							<font>教育</font>
-						</a>
-					</li>
-					<li>
-						<a @click="shoplocal($event)" href="javascript:;">
-							<font>交通</font>
-						</a>
-					</li>
-					<li>
-						<a @click="shoplocal($event)" href="javascript:;">
-							<font>医院</font>
-						</a>
-					</li>
-					<li>
-						<a @click="shoplocal($event)" href="javascript:;">
-							<font>购物</font>
-						</a>
-					</li>
-					<li>
-						<a @click="shoplocal($event)" href="javascript:;">
-							<font>餐饮</font>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<a id="call" :href="'tel:'+butter_tel">电话咨询</a>
-		</div>
-	</div>
+        </div>
+        <ul id="map_btn">
+          <li>
+            <a @click="shoplocal($event)" href="javascript:;">
+              <font>教育</font>
+            </a>
+          </li>
+          <li>
+            <a @click="shoplocal($event)" href="javascript:;">
+              <font>交通</font>
+            </a>
+          </li>
+          <li>
+            <a @click="shoplocal($event)" href="javascript:;">
+              <font>医院</font>
+            </a>
+          </li>
+          <li>
+            <a @click="shoplocal($event)" href="javascript:;">
+              <font>购物</font>
+            </a>
+          </li>
+          <li>
+            <a @click="shoplocal($event)" href="javascript:;">
+              <font>餐饮</font>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <a id="call" :href="'tel:'+butter_tel">电话咨询</a>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -204,26 +206,29 @@ export default {
     };
   },
   methods: {
-    checkBuildingPic(){
-      let pic = this.data.project_basic_info.total_float_url_phone
-      let id = this.project_base_info.project_id
+    checkBuildingPic() {
+      let pic = this.data.project_basic_info.total_float_url_phone;
+      let id = this.project_base_info.project_id;
       // console.log(pic)
-      this.$router.push({name:'buildingPic',params:{projectId:id,pic}})
+      this.$router.push({
+        name: "buildingPic",
+        params: { projectId: id, pic }
+      });
     },
-    checkAllMessage(){
-      let id = this.project_base_info.project_id
-      this.$router.push({name:'newMessage',query:{project_id:id}})
+    checkAllMessage() {
+      let id = this.project_base_info.project_id;
+      this.$router.push({ name: "newMessage", query: { project_id: id } });
     },
-    getMoreDetails(house){
-      let id = house.id
-      this.$router.push({name:'estatedetail',query:{id}})
+    getMoreDetails(house) {
+      let id = house.id;
+      this.$router.push({ name: "estatedetail", query: { id } });
       // this.$router.push({
 
       // })
     },
-    checkPropertyDetail(){
-      let id = this.project_base_info.project_id
-      this.$router.push({name:'propertyInformation',query:{id}})
+    checkPropertyDetail() {
+      let id = this.project_base_info.project_id;
+      this.$router.push({ name: "propertyInformation", query: { id } });
     },
     hided() {
       this.show = false;
@@ -242,7 +247,7 @@ export default {
       var m = e.currentTarget;
       var option = m.querySelector("font").innerHTML;
       var info = $("#base_loacl").html();
-      this.local.searchNearby(option, info);
+      this.local.searchNearby(option, info, 15);
     },
     ajusctTextContent: function cuttext(eleclassname, count, words) {
       var p_boxs = document.querySelectorAll(eleclassname, count);
@@ -286,7 +291,7 @@ export default {
       type: "get",
       dataType: "json",
       success: function(res) {
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAA")
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAA");
         console.log(res);
         _this.data = res.data;
         _this.dynamic = res.data.dynamic;
@@ -300,7 +305,15 @@ export default {
       }
     });
   },
-  mounted() {},
+  mounted() {
+    //     if (!mark) {
+    //   slider();
+    //   this.ajusctTextContent(".house_named", 4, "");
+    //   this.ajusctTextContent("#dy_content", 40, "");
+    //   this.location();
+    //   mark = true;
+    // }
+  },
   updated() {
     if (!mark) {
       slider();
@@ -402,6 +415,13 @@ function slider() {
 <style scoped>
 @import "../assets/resetByHuang.css";
 
+div#scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+.imgwrapper{
+  display: -webkit-box;
+}
 #detail {
   width: 100%;
   float: left;
@@ -551,11 +571,11 @@ function slider() {
   line-height: 0.9rem;
   font-size: 12px;
 }
-.house_detail{
-	width:100%;
-	background: #fff;
-	float:left;
-} 
+.house_detail {
+  width: 100%;
+  background: #fff;
+  float: left;
+}
 .house_detail h4 {
   width: 100%;
   /* height:1.5625rem; */
@@ -578,11 +598,11 @@ function slider() {
   font-size: 20px;
   font-weight: 500;
 }
-.fix{
-	display: flex;
-	width: 240px;
-	height: 120px;
-	flex-wrap: wrap
+.fix {
+  display: flex;
+  width: 240px;
+  height: 120px;
+  flex-wrap: wrap;
 }
 .house_detail .house_cancle {
   /* float:left; */
@@ -600,12 +620,12 @@ function slider() {
   padding: 0.25rem 0;
   border: 1px solid red;
   justify-content: center;
-  align-items: center
+  align-items: center;
 }
 #detail .house_detail .house_cancle .house_can a {
   /* width: calc(333.3333% - 10px); */
- width: 30px;
- /* float:left; */
+  width: 30px;
+  /* float:left; */
   height: 0.3rem;
   line-height: 0.3rem;
   text-align: center;
@@ -722,7 +742,7 @@ function slider() {
   width: 100%;
   margin-top: 0.2rem;
   /* height: 9.3125rem; */
-  height:5.0rem;
+  height: 5rem;
   background: #fff;
   /* padding: 0.5rem; */
 }
@@ -731,9 +751,9 @@ function slider() {
   width: 100%;
   height: 1.5625rem;
   display: flex;
-  align-items: center
+  align-items: center;
 }
-#detail .head_mod h3{
+#detail .head_mod h3 {
   float: left;
   /* width: 8rem; */
   flex-grow: 1;
@@ -760,7 +780,7 @@ function slider() {
   /* height: 6.25rem; */
   height: 2.8rem;
   /* margin-top: 0.5rem; */
-  font-size: 16px
+  font-size: 16px;
 }
 #detail .info_detail .info_content {
   float: left;
@@ -793,11 +813,11 @@ function slider() {
   background: #fff;
   /* margin-bottom: 0.2rem; */
 }
-div.head_mod{
+div.head_mod {
   display: flex;
 }
 #detail .project_news h3 {
-  flex-grow: 1
+  flex-grow: 1;
   /* float: left; */
   /* display: flex; */
   /* width: 10rem; */
@@ -824,7 +844,7 @@ div.head_mod{
   float: left;
   font-size: 16px;
   width: 100%;
-  margin-bottom: 0.1rem
+  margin-bottom: 0.1rem;
 }
 #detail .project_notes p {
   float: left;
@@ -835,10 +855,10 @@ div.head_mod{
   color: #737373;
   /* height: 2rem; */
   overflow: hidden;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-line-clamp: 2;
--webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   margin-bottom: 0.1rem;
 }
 #detail .project_img {
@@ -865,11 +885,11 @@ display: -webkit-box;
   /* padding: 0.5rem; */
 }
 #detail .project_img .house_type {
-  float: left;
-  width: 100%;
+  /* float: left; */
+  /* width: 100%; */
 }
 #detail .project_img .house_type_content {
-  float: left;
+  /* float: left; */
   width: 3.1rem;
   margin-right: 0.5rem;
 }
@@ -878,11 +898,11 @@ display: -webkit-box;
   width: 100%;
   height: 3.1rem;
 }
-#detail .project_img .house_type_content:nth-child(3) {
+/* #detail .project_img .house_type_content:nth-child(3) {
   float: left;
   width: 3.1rem;
   margin-right: 0rem;
-}
+} */
 #detail .project_img .house_type_content div {
   /* float: left; */
   width: 100%;
@@ -891,7 +911,7 @@ display: -webkit-box;
 }
 #detail .project_img .house_type_content div p {
   float: left;
-  width: 3.6rem;
+  width: 4.6rem;
   /* font-size: 0.65rem; */
   font-size: 12px;
   text-align: left;
@@ -918,7 +938,7 @@ display: -webkit-box;
   color: #fff;
   text-align: center;
   line-height: 1.2rem;
-  font-size: 16px
+  font-size: 16px;
 }
 #detail .around {
   float: left;
@@ -1001,13 +1021,12 @@ display: -webkit-box;
   table-layout: auto !important;
 }
 
-
-.flexUl{
+.flexUl {
   display: flex;
-  align-items: center
+  align-items: center;
 }
 
-.houseCancle{
+.houseCancle {
   display: flex;
   align-items: flex-start;
   width: 100%;
@@ -1015,31 +1034,29 @@ display: -webkit-box;
   font-size: 14px;
   /* border: 1px solid red */
 }
-.tagwrapper{
+.tagwrapper {
   flex-grow: 1;
   /* border: 1px solid blue; */
   height: 100%;
 }
-.houseCan{
-  height:0.7rem;
-  margin-bottom: 0.05rem
-
+.houseCan {
+  height: 0.7rem;
+  margin-bottom: 0.05rem;
 }
-.split{
+.split {
   overflow: hidden;
 }
-.houseFunction{
+.houseFunction {
   height: 0.7rem;
-  margin-top: 0.05rem
+  margin-top: 0.05rem;
 }
-.fullHeight{
-  height: 100%
+.fullHeight {
+  height: 100%;
 }
-.concerned{
+.concerned {
+}
 
-}
-
-.liItem{
+.liItem {
   /* height: 0.6rem; */
   line-height: 0.7rem;
   text-align: center;
@@ -1062,18 +1079,18 @@ display: -webkit-box;
   color: #d5f2ff;
   background: #40a9ff;
 }
-.bder{
+.bder {
   position: relative;
 }
-.bder::after{
-  content: '';
+.bder::after {
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   width: 200%;
-  height:200%;
+  height: 200%;
   border: 1px solid #dcdcdc;
   color: #d5d5d6;
   -webkit-transform-origin: 0 0;
@@ -1082,35 +1099,13 @@ display: -webkit-box;
   transform: scale(0.5);
 }
 
-.rightside{
-  margin-left: 0.36rem
+.rightside {
+  margin-left: 0.36rem;
 }
-div.around{
-  background-color: #fff
+div.around {
+  background-color: #fff;
 }
-a#call{
+a#call {
   height: 1.2rem;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </style>

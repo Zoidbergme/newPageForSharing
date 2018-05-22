@@ -70,7 +70,7 @@ export default {
                 let build_id = item.LDID
                 let unit_id = 0
                 let project_id = this.$route.params.projectId
-                this.$router.push({name:'unitDetail',query:{build_id,unit_id,project_id},params:item.build_info})
+                this.$router.push({name:'unitDetail',query:{build_id,unit_id,project_id},params:{info:item.build_info,LDMC:item.LDMC}})
             }
         },
         getBack(){
@@ -81,7 +81,7 @@ export default {
             let build_id = this.items[this.activeIndex].LDID
             let unit_id = sub.DYID
             let project_id = this.$route.params.projectId
-            this.$router.push({name:'unitDetail',query:{build_id,unit_id,project_id},params:this.items[this.activeIndex].build_info})
+            this.$router.push({name:'unitDetail',query:{build_id,unit_id,project_id},params:{info:this.items[this.activeIndex].build_info,LDMC:this.items[this.activeIndex].LDMC,DYMC:sub.DYMC}})
 
         }
     }

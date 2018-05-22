@@ -2,23 +2,23 @@
     <div id="unitDetail">
         <div class="nav">
             <div class="back" @click="getBack"><</div>
-            1栋1单元详情
+            {{$route.params.DYMC ? $route.params.LDMC + $route.params.DYMC :$route.params.info.build_name + $route.params.LDMC}}
         </div>
         <div class="pullUp" v-show="spread">
             <div class="sinfowrapper">
 
                 <div class="sinfo">
                     <div>
-                        <p>单元个数: <span>{{$route.query.unit_id === 0 ? 1 :$route.query.unit_id}}</span></p>
-                        <p>楼上层数: <span>{{$route.params.upper_floor_num}}层</span></p>
-                        <p>梯户比: <span>2梯4户</span></p>
-                        <p>开盘时间: <span>{{$route.params.open_time}}</span></p>
+                        <!-- <p>单元个数: <span>{{$route.query.unit_id === 0 ? 1 :$route.query.unit_id}}</span></p> -->
+                        <p>总户数: <span>{{$route.params.info.total_house_num}}</span></p>
+                        <p>楼上层数: <span>{{$route.params.info.upper_floor_num}}层</span></p>
+                        <!-- <p>梯户比: <span>2梯4户</span></p> -->
+                        <p>开盘时间: <span>{{$route.params.info.open_time}}</span></p>
                     </div>
                     <div>
-                        <p>总户数: <span>{{$route.params.total_house_num}}</span></p>
-                        <p>楼下层数: <span>{{$route.params.down_floor_num}}层</span></p>
-                        <p>开盘方式: <span>{{$route.params.open_way}}</span></p>
-                        <p>交房时间: <span>{{$route.params.handing_room_time}}</span></p>
+                        <p>楼下层数: <span>{{$route.params.info.down_floor_num}}层</span></p>
+                        <p>开盘方式: <span>{{$route.params.info.open_way}}</span></p>
+                        <p>交房时间: <span>{{$route.params.info.handing_room_time}}</span></p>
                     </div>
                 </div>
                 <div class="img">
@@ -51,7 +51,7 @@
                     <ul :style="{width:dynamicWidth}">
                         <li v-for="(item,index) in items" :key="index">
                             <ul class="itmwrapper">
-                                <li v-for="(itm,idx) in item" @click="choose(itm)" :key="idx" class="itm" :class="{scheduled:itm.FJZT==='3',sold:itm.FJZT==='4',unsold:itm.FJZT==='5'}">{{itm.FJMC}}</li>
+                                <li v-for="(itm,idx) in item" @click="choose(itm)" :key="idx" class="itm" :class="{scheduled:itm.FJZT==='3' || itm.FJZT==='2'||itm.FJZT==='5'||itm.FJZT==='6',sold:itm.FJZT==='4',unsold:itm.FJZT==='0' || itm.FJZT ==='1'}">{{itm.FJMC}}</li>
                             </ul>
                         </li>
                     </ul>
@@ -62,7 +62,7 @@
         <div class="mask" v-show="showModal">
             <div class="modal">
                 <div class="mtitle">
-                    {{$route.params.build_name}}
+                    {{$route.params.info.build_name}}
                     <div class="mclose" @click="closeModal">x</div>
                 </div>
                 <div class="minfo">
@@ -155,6 +155,10 @@ export default {
       this.showModal = false;
     },
     choose(itm) {
+      // console.log(itm.FJZT)
+      if(itm.FJZT !=='0' && itm.FJZT !=='1'){
+        return
+      }
       this.activeItem = itm;
       this.showModal = true;
     },
