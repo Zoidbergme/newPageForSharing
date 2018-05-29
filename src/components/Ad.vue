@@ -6,7 +6,7 @@
           <p class="main">找新房 上云算</p>
           <p class="secondary">选房 抢房 线上开盘一条龙服务</p>
       </div>
-      <div id="download">下载APP</div>
+      <div id="download"> <a href="http://itunes.apple.com/app/id1371978352?mt=8">下载APP</a></div>
   </div>
 </template>
 
@@ -69,7 +69,11 @@ export default {
   width: 4.26rem;
   height: 0.84rem;
 }
-#download {
+div#download {
+  display: flex;
+  align-items: center
+}
+#download  a{
   width: 2rem;
   height: 0.8rem;
   font-size: 0.36rem;

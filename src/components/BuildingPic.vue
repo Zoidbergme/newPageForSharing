@@ -2,7 +2,7 @@
     <div id="building">
         <div class="bgp" :style="{background:'url(' + bgp + ')'}">
             <div class="back" @click="getBack"><</div>
-            <div class="btn" @click="toggle" v-show="condition">展开</div>
+            <div class="btn" @click="toggle" v-show="condition" >展开</div>
             <div class="control" v-show="!condition">
                 <div @click="toggle" class="close">
                     <span>></span>
@@ -45,6 +45,7 @@ export default {
     created(){
         this.bgp = 'http://120.27.21.136:2798/' + this.$route.params.pic
         this.$http.get('http://120.27.21.136:2798/user/yunsuan/build?project_id='+this.$route.params.projectId).then((res)=>{
+            console.log('daaaaaaaaaaaaaaaaaaa')
             console.log(res)
             this.items = res.data.data
         })

@@ -11,7 +11,8 @@
             <h4>找新房&nbsp;上云算</h4>
             <p>渠道&nbsp;分销&nbsp;专业房产平台</p>
           </div>
-          <a class="downLoad" v-bind:href="'http://'+project_base_info.yunsuan_url">下载APP</a>
+          <!-- <a class="downLoad" v-bind:href="'http://'+project_base_info.yunsuan_url">下载APP</a> -->
+          <a class="downLoad" href="http://itunes.apple.com/app/id1371978352?mt=8">下载APP</a>
         </div>
       </div>
       <div class="banner_images">

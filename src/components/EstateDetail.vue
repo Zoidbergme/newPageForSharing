@@ -19,7 +19,7 @@ export default {
   components: { Preview, Ad, Typesearch },
   methods:{
     getBack(){
-      let id = this.$route.query.id
+      // let id = this.$route.query.id
       this.$router.go(-1)
     }
   }

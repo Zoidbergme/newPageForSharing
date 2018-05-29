@@ -4,8 +4,8 @@
             <div class="back" @click="getBack"><</div>
             {{$route.params.DYMC ? $route.params.LDMC + $route.params.DYMC :$route.params.info.build_name + $route.params.LDMC}}
         </div>
-        <div class="pullUp" v-show="spread">
-            <div class="sinfowrapper">
+        <div class="pullUp" v-show="spread" @touchmove.prevent  >
+            <div class="sinfowrapper" >
 
                 <div class="sinfo">
                     <div>
