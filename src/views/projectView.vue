@@ -27,7 +27,7 @@
       <div class="house_detail">
         <div class="house_name">
           <h4>
-            <font class="house_title">{{project_base_info.developer_name}}</font>
+            <font class="house_title">{{project_base_info.project_name}}</font>
             <font class="house_state" style="color:#1B98FF">{{project_base_info.sale_state}}</font>
           </h4>
         </div>
@@ -235,9 +235,15 @@ export default {
       this.show = false;
     },
     location() {
-      var localInfo = document.querySelector(".local_info");
-      var latitude = localInfo.getAttribute("name");
-      var longitude = localInfo.id;
+      var latitude = this.project_base_info.latitude
+      // var latitude = localInfo.getAttribute("name");
+      var longitude = this.project_base_info.longitude
+      // var localInfo = document.querySelector(".local_info");
+      // var latitude = localInfo.getAttribute("name");
+      // var longitude = localInfo.id;
+      // console.log(localInfo)
+      console.log(latitude)
+      console.log(longitude)
       this.map = new BMap.Map("allmap");
       this.map.centerAndZoom(new BMap.Point(longitude, latitude), 12);
       this.local = new BMap.LocalSearch(this.map, {
@@ -303,10 +309,16 @@ export default {
         _this.cancle = res.data.project_basic_info.property_type;
         _this.butter_tel = res.data.butter_tel;
         _this.loadding = true;
+    // _this.$nextTick(_this.location)
       }
     });
+    //  this.$nextTick(this.slider) 
+    //   this.$nextTick(this.location)
+ 
   },
   mounted() {
+    
+    // this.location()
     //     if (!mark) {
     //   slider();
     //   this.ajusctTextContent(".house_named", 4, "");
@@ -316,14 +328,14 @@ export default {
     // }
   },
   updated() {
-    if (!mark) {
+    // if (!mark) {
       slider();
-      this.ajusctTextContent(".house_named", 4, "");
-      this.ajusctTextContent("#dy_content", 40, "");
-
+    //   this.ajusctTextContent(".house_named", 4, "");
+    //   this.ajusctTextContent("#dy_content", 40, "");
+    //   console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa')
       this.location();
-      mark = true;
-    }
+    //   mark = true;
+    // }
   }
 };
 function obj(dynamic, project_base_info, house_type) {}

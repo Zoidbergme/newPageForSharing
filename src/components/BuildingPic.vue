@@ -173,7 +173,7 @@ export default {
         top:50%;
         width: 3rem;
         -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50, -50%);
+        transform: translate(-50%, -50%);
         background-color: #ffffff;
         font-size: 14px;
     }

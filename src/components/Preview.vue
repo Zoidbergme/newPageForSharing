@@ -55,9 +55,9 @@ export default {
   },
   watch: {
     $route(to, from) {
-        console.log('11111111111111111111111')
-        console.log(to)
-        console.log(from)
+        // console.log('11111111111111111111111')
+        // console.log(to)
+        // console.log(from)
       this.tags = [];
       this.listImg = [];
       this.currentIndex = 0;
@@ -66,11 +66,13 @@ export default {
       this.$http
         .get("http://120.27.21.136:2798/user/houseType/detail?id=" + id)
         .then(function(response) {
+          console.log('-----------------------------------')
+          console.log(response.data.data)
           self.detail = response.data.data.baseInfo;
-          let res = [];
+          // let res = [];
           response.data.data.imgInfo.forEach(element => {
             self.tags.push(element.type);
-            res.push(element.list);
+            // res.push(element.list);
             self.listImg.push(element.list);
           });
         });

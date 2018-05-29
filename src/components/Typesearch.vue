@@ -44,9 +44,9 @@ export default {
     this.$http
       .get("http://120.27.21.136:2798/user/houseType/list?project_id=" + id)
       .then(function(response) {
-        console.log(response);
+        // console.log(response);
         self.items = response.data.data;
-        console.log(self.items);
+        // console.log(self.items);
         self.dynamicWidth =
           (self.items.length * 5.353 + 0.3) *
             document.documentElement.clientWidth /
@@ -61,9 +61,9 @@ export default {
       this.$http
         .get("http://120.27.21.136:2798/user/houseType/list?project_id=" + id)
         .then(function(response) {
-          console.log(response);
+          // console.log(response);
           self.items = response.data.data;
-          console.log(self.items);
+          // console.log(self.items);
           self.dynamicWidth =
             (self.items.length * 5.353 + 0.3) *
               document.documentElement.clientWidth /
