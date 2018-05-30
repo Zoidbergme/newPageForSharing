@@ -15,10 +15,10 @@
           <a class="downLoad" href="http://itunes.apple.com/app/id1371978352?mt=8">下载APP</a>
         </div>
       </div>
-      <div class="banner_images">
+      <div class="banner_images" @click="goMockGallery">
         <ul>
           <li v-for="(imgs,index) in project_img" :key="index">
-            <a href="#"><img v-bind:src="'http://120.27.21.136:2798/'+imgs.img_url" /></a>
+            <a href="javascript:;"><img v-bind:src="'http://120.27.21.136:2798/'+imgs.img_url" /></a>
           </li>
 
         </ul>
@@ -207,10 +207,12 @@ export default {
     };
   },
   methods: {
+    goMockGallery(){
+      this.$router.push({name:'gallery',params:{info:this.project_img}})
+    },
     checkBuildingPic() {
       let pic = this.data.project_basic_info.total_float_url_phone;
       let id = this.project_base_info.project_id;
-      // console.log(pic)
       this.$router.push({
         name: "buildingPic",
         params: { projectId: id, pic }
@@ -223,9 +225,6 @@ export default {
     getMoreDetails(house) {
       let id = house.id;
       this.$router.push({ name: "estatedetail", query: { id } });
-      // this.$router.push({
-
-      // })
     },
     checkPropertyDetail() {
       let id = this.project_base_info.project_id;
@@ -236,14 +235,7 @@ export default {
     },
     location() {
       var latitude = this.project_base_info.latitude
-      // var latitude = localInfo.getAttribute("name");
       var longitude = this.project_base_info.longitude
-      // var localInfo = document.querySelector(".local_info");
-      // var latitude = localInfo.getAttribute("name");
-      // var longitude = localInfo.id;
-      // console.log(localInfo)
-      console.log(latitude)
-      console.log(longitude)
       this.map = new BMap.Map("allmap");
       this.map.centerAndZoom(new BMap.Point(longitude, latitude), 12);
       this.local = new BMap.LocalSearch(this.map, {
@@ -272,34 +264,31 @@ export default {
           }
         }
       }
-    },
-    GetQueryString(name) {
-      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-      var r = window.location.href.substr(1).match(reg);
-      if (r != null) {
-        return unescape(r[2]);
-      }
-      return null;
     }
+    // GetQueryString(name) {
+    //   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    //   var r = window.location.href.substr(1).match(reg);
+    //   if (r != null) {
+    //     return unescape(r[2]);
+    //   }
+    //   return null;
+    // }
   },
   created() {
-    // alert(Math.random()+"sadasdadasdadasda")
     var _this = this;
-    this.project_id = this.GetQueryString("project_id");
-    this.project_id = this.project_id === null ? 1 : this.project_id;
+    this.project_id = this.$route.query.id
+    // this.project_id = this.GetQueryString("project_id");
+    // this.project_id = this.project_id === null ? 1 : this.project_id;
     var url =
       "http://120.27.21.136:2798/user/project/detail?project_id=" +
       this.project_id +
       "&agent_id=0";
-    // console.log(url);
     $.ajax({
       url: url,
       async: "false",
       type: "get",
       dataType: "json",
       success: function(res) {
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAA");
-        console.log(res);
         _this.data = res.data;
         _this.dynamic = res.data.dynamic;
         _this.focus = res.data.focus;
@@ -312,30 +301,15 @@ export default {
     // _this.$nextTick(_this.location)
       }
     });
-    //  this.$nextTick(this.slider) 
-    //   this.$nextTick(this.location)
  
   },
   mounted() {
-    
-    // this.location()
-    //     if (!mark) {
-    //   slider();
-    //   this.ajusctTextContent(".house_named", 4, "");
-    //   this.ajusctTextContent("#dy_content", 40, "");
-    //   this.location();
-    //   mark = true;
-    // }
   },
   updated() {
-    // if (!mark) {
       slider();
     //   this.ajusctTextContent(".house_named", 4, "");
     //   this.ajusctTextContent("#dy_content", 40, "");
-    //   console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa')
       this.location();
-    //   mark = true;
-    // }
   }
 };
 function obj(dynamic, project_base_info, house_type) {}

@@ -55,9 +55,6 @@ export default {
   },
   watch: {
     $route(to, from) {
-        // console.log('11111111111111111111111')
-        // console.log(to)
-        // console.log(from)
       this.tags = [];
       this.listImg = [];
       this.currentIndex = 0;
