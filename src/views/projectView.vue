@@ -220,7 +220,8 @@ export default {
     },
     checkAllMessage() {
       let id = this.project_base_info.project_id;
-      this.$router.push({ name: "newMessage", query: { project_id: id } });
+      let pname = this.project_base_info.project_name
+      this.$router.push({ name: "newMessage", query: { project_id: id ,pname} });
     },
     getMoreDetails(house) {
       let id = house.id;
@@ -289,6 +290,7 @@ export default {
       type: "get",
       dataType: "json",
       success: function(res) {
+        console.log(res)
         _this.data = res.data;
         _this.dynamic = res.data.dynamic;
         _this.focus = res.data.focus;

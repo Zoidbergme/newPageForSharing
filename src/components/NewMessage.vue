@@ -2,8 +2,7 @@
   <div id="newMessage">
     <div class="nav">
       <div class="back" @click="backToProjectView"> < </div>
-      <div class="navtitle">云算公馆动态</div>
-      <!-- 导航 -->
+      <div class="navtitle">{{name}}动态</div>
     </div>
     <div class="position-box">
       <vue-better-scroll class="wrapper" ref="scroll" :scrollbar="scrollbarObj" :pullDownRefresh="pullDownRefreshObj" :pullUpLoad="pullUpLoadObj" :startY="parseInt(startY)" @pullingDown="onPullingDown" @pullingUp="onPullingUp">
@@ -25,23 +24,6 @@
       </vue-better-scroll>
     </div>
 
-    <!-- <div class="wrapper" ref="wrapper" style="height:300px">
-      <ul class="content">
-        <li v-for="(item,index) in items" :key="index" class="white">
-          <div class="title">云算公馆参考价格5000元/m</div>
-          <div class="time">2017-02-23</div>
-          <div class="content">是的那就是电脑加速度静安寺疯狂撒积分卡积分卡撒反对垃圾分类看见啊浪费空间啊</div>
-          <div class="pic" v-if="condition">
-            <ul>
-              <li v-for="(pic,index) in pics" :key="index"></li>
-            </ul>
-          </div>
-          <div class="btn">阅读全文&nbsp;>></div>
-          <div class="split" v-if="index !== items.length - 1"></div>
-        </li>
-      </ul>
-      <div class="loading-wrapper"></div>
-    </div> -->
   </div>
 </template>
 
@@ -56,6 +38,7 @@ export default {
   },
   data() {
     return {
+      name:'',
       // 这个配置可以开启滚动条，默认为 false。当设置为 true 或者是一个 Object 的时候，都会开启滚动条，默认是会 fade 的
       scrollbarObj: {
         fade: true
@@ -189,6 +172,7 @@ export default {
     }
   },
   created() {
+    this.name = this.$route.query.pname
     // this.$http.get('http://120.27.21.136:2798/user/dynamic/list?project_id=1&page=1').then(function(res){
     //   console.log(res)
     //   this.items = res.data
