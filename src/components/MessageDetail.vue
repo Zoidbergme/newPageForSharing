@@ -47,6 +47,7 @@ export default {
   methods:{
     getBack() {
       let project_id = this.$route.query.fromProject
+      // this.$router.go(-1)
       this.$router.push({name:'newMessage',query:{project_id}})
     }   
   }

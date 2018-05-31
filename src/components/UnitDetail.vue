@@ -169,7 +169,8 @@ export default {
         this.spread = true
     },
     getBack(){
-        this.$router.push({name:'projectView',params:{id:this.$route.query.project_id}})
+        this.$router.go(-1)
+        // this.$router.push({name:'projectView',params:{id:this.$route.query.project_id}})
     }
   },
   created() {

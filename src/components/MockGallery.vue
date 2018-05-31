@@ -74,7 +74,7 @@ export default {
   },
   created() {
     this.$http
-      .get("http://120.27.21.136:2798/user/img/get?project_id=1")
+      .get("http://120.27.21.136:2798/user/img/get?project_id=" + this.$route.query.id)
       .then(res => {
         // console.log(res)
         var self = this
@@ -108,8 +108,6 @@ export default {
         this.name = this.items[0].name
         this.tmplength = this.items[0].length
         
-        console.log('!!!!!!!!!!!!!!!!!!')
-        console.log(this.items)
         // this.listImgs.forEach(function(ele,index){
         //     self.total += ele.data.length
         // })

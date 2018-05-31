@@ -208,7 +208,7 @@ export default {
   },
   methods: {
     goMockGallery(){
-      this.$router.push({name:'gallery',params:{info:this.project_img}})
+      this.$router.push({name:'gallery',query:{id:this.$route.query.id}})
     },
     checkBuildingPic() {
       let pic = this.data.project_basic_info.total_float_url_phone;

@@ -140,7 +140,7 @@ export default {
   },
   methods:{
       getBack(){
-          this.$router.push({name:'projectView',params:{id:this.$route.query.id}})
+          this.$router.push({name:'projectView',query:{id:this.$route.query.id}})
       }
   },
   computed: {

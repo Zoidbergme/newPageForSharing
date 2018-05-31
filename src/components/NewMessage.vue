@@ -92,7 +92,7 @@ export default {
   methods: {
     backToProjectView(){
       let project_id = this.$route.query.project_id
-      this.$router.push({name:'projectView',params:{id:project_id}})
+      this.$router.push({name:'projectView',query:{id:project_id}})
     },
     checkAllInfo(index){
       let project_id = this.$route.query.project_id
@@ -141,7 +141,7 @@ export default {
       // });
       let result = this.$http
         .get(
-          "http://120.27.21.136:2798/user/dynamic/list?project_id=1&page=" +
+          "http://120.27.21.136:2798/user/dynamic/list?project_id=" + this.$route.query.project_id + "&page=" +
             this.currentPage
         )
         .then(res => {

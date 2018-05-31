@@ -76,7 +76,7 @@ export default {
         },
         getBack(){
             let id = this.$route.params.projectId
-            this.$router.push({name:'projectView',params:{id}})
+            this.$router.push({name:'projectView',query:{id}})
         },
         checkUnitDetail(sub){
             let build_id = this.items[this.activeIndex].LDID
