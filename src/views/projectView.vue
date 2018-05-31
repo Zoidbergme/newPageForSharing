@@ -694,6 +694,7 @@ div#scroll {
   text-align: center;
   line-height: 1.2rem;
   position: relative;
+  margin-top: 0.1rem;
 }
 #detail .house_detail .timer_content font {
   float: left;
@@ -1035,7 +1036,7 @@ div.head_mod {
 }
 .houseFunction {
   height: 0.7rem;
-  margin-top: 0.05rem;
+  margin-top: 0.15rem;
 }
 .fullHeight {
   height: 100%;

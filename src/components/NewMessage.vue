@@ -8,7 +8,7 @@
     <div class="position-box">
       <vue-better-scroll class="wrapper" ref="scroll" :scrollbar="scrollbarObj" :pullDownRefresh="pullDownRefreshObj" :pullUpLoad="pullUpLoadObj" :startY="parseInt(startY)" @pullingDown="onPullingDown" @pullingUp="onPullingUp">
         <ul ref="list" class="list-content">
-          <li class="list-item" v-for="(item,index) in items" :key="index">
+          <li class="list-item" v-for="(item,index) in items" :key="index" >
             <div class="title">{{item.title}}</div>
             <div class="time">{{item.create_time}}</div>
             <div class="content">{{item.content}}</div>
@@ -19,6 +19,7 @@
             </div>
             <div class="btn" @click="checkAllInfo(item.dynamic_id)">阅读全文&nbsp;>></div>
             <div class="split" v-if="index !== items.length - 1"></div>
+            <div class="mockblank"></div>
           </li>
         </ul>
       </vue-better-scroll>
@@ -213,6 +214,9 @@ export default {
 body {
   margin: 0 !important;
 }
+/* .list-item{
+  margin-bottom: 10px;
+} */
 .nav {
   position: fixed;
   left: 0;
@@ -302,5 +306,9 @@ body {
   text-align: center;
   line-height: 40px;
 
+}
+.mockblank{
+  width: 100%;
+  height: 1rem;
 }
 </style>

@@ -234,7 +234,7 @@ export default {
 }
 
 .active{
-    background-color: #6495ed;
+    background-color: #40a9ff;
     color: white;
 }
 
