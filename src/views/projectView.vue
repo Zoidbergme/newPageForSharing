@@ -2,7 +2,7 @@
   <div id="detail">
     <div class="main" v-if="loadding">
       <div class="main_mask" v-show="show">
-        <b class="close" v-on:click="hided">x</b>
+        <span class="close" v-on:click="hided"></span>
         <div class="middle_content">
           <div class="log">
             <img src="../assets/log.gif" alt="" />
@@ -24,7 +24,7 @@
         </ul>
         <div class="show"></div>
       </div>
-      <div class="house_detail">
+      <div class="house_detail space">
         <div class="house_name">
           <h4>
             <font class="house_title">{{project_base_info.project_name}}</font>
@@ -80,7 +80,7 @@
           <font id="base_loacl" class="rightside">{{project_base_info.absolute_address}}</font>
         </a>
       </div>
-      <div class="bulding_info">
+      <div class="bulding_info space">
         <div class="head_mod">
           <h3>楼盘信息</h3>
           <a href="javascript:;" @click="checkPropertyDetail">查看全部>></a>
@@ -404,6 +404,10 @@ function slider() {
 <style scoped>
 @import "../assets/resetByHuang.css";
 
+.space{
+  padding: 0 0.3rem
+}
+
 div#scroll {
   width: 100%;
   overflow-x: auto;
@@ -449,6 +453,9 @@ div#scroll {
 }
 .main_mask {
   /* float:left; */
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 1.6rem;
   background: #0facfc;
@@ -459,16 +466,23 @@ div#scroll {
   flex-wrap: nowrap;
   padding: 0.2rem;
   z-index: 1000;
+  align-items: center;
 }
-.main_mask b {
+.main_mask span {
+  margin-right: 0.2rem;
   color: #fff;
   /* font-size:034rem; */
-  font-size: 12px;
-  margin-left: 0.3rem;
-  margin-top: 0.32rem;
-  margin-right: 0.3rem;
+  /* font-size: 12px; */
+  width: 0.5rem;
+  height: 0.5rem;
+  /* border: 1px solid red; */
+  /* margin-left: 0.3rem; */
+  /* margin-top: 0.32rem; */
+  /* margin-right: 0.3rem; */
+  background-image: url('../assets/close.png');
+  background-size: cover;
   /* float:left; */
-  font-weight: 400;
+  /* font-weight: 400; */
 }
 .main_mask .log {
   width: 1.2rem;
@@ -524,7 +538,7 @@ div#scroll {
 #detail .banner_images {
   float: left;
   width: 100%;
-  height: 3.9rem;
+  height: 5.5rem;
   position: relative;
   overflow: hidden;
 }
@@ -532,19 +546,19 @@ div#scroll {
   /* float:left; */
   display: flex;
   width: 300%;
-  height: 3.9rem;
+  height: 5.5rem;
 }
 #detail .banner_images ul li {
   float: left;
   width: 33%;
   padding: 0px;
-  height: 3.9rem;
+  height: 5.5rem;
 }
 #detail .banner_images ul li a,
 #detail .banner_images ul li img {
   float: left;
   width: 100%;
-  height: 3.9rem;
+  height: 5.5rem;
 }
 #detail .show {
   width: 0.9rem;

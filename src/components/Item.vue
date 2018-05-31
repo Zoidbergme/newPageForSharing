@@ -1,5 +1,5 @@
 <template>
-    <div id="item">
+    <div id="uniqueItem">
         <div class="title">
             <slot></slot>
         </div>
@@ -15,8 +15,8 @@ export default {
 };
 </script>
 
-<style scoped>
-#item {
+<style>
+#uniqueItem {
   display: flex;
   align-items: flex-start;
   position: relative;
@@ -37,13 +37,15 @@ export default {
   -webkit-transform: scale(0.3333333);
   transform: scale(0.3333333);
 } */
-.title {
+#uniqueItem .title {
   width: 3.5rem;
   margin: 0.3rem 0;
   flex-shrink: 0
 }
-.content {
+#uniqueItem .content {
   flex-grow: 1;
   margin: 0.3rem 0;
 }
+
+
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div id="propertyInformation">
         <div class="nav">
-            <div class="back" @click="getBack"><</div>
+            <div class="back" @click="getBack"></div>
             {{info.project_name}}
         </div>
         <div id="detail">
@@ -206,8 +206,14 @@ ul li {
 }
 .back{
     position: absolute;
-    left: 0.1rem;
-    top: 0;
-    font-size: 24px
+    left: 0;
+    top: 50%;
+    background-image: url('../assets/back.png');
+    width:0.5rem;
+    height: 0.5rem;
+    background-size: cover;
+    transform: translate(0,-50%)
+
+    /* font-size: 24px */
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="adWrapper" v-if="show">
-      <div id="close" @click="close">X</div>
+      <div id="close" @click="close"></div>
       <div id="logo"></div>
       <div id="slogen">
           <p class="main">找新房 上云算</p>
@@ -45,13 +45,15 @@ export default {
   justify-content: space-between
 }
 #close {
-  width: 0.34rem;
-  height: 0.34rem;
-  color: #ffffff;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-image: url('../assets/close.png');
+  background-size: cover;
+  /* color: #ffffff; */
   /* border: 1px solid red; */
-  font-size: 0.34rem;
-  line-height: 0.34rem;
-  text-align: center;
+  /* font-size: 0.34rem; */
+  /* line-height: 0.34rem; */
+  /* text-align: center; */
   margin-right: 0.34rem;
 }
 #logo {

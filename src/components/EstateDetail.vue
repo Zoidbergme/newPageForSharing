@@ -2,7 +2,6 @@
   <div>
     <ad></ad>
     <div class="uniqueGetBack" @click="getBack">
-      <
     </div>
     <preview />
     <typesearch />
@@ -27,12 +26,16 @@ export default {
 </script>
 <style scoped>
 .uniqueGetBack{
-  width: 100%;
-  height: 1rem;
-  font-size: 24px;
-  padding-left: 0.2rem;
-  font-weight: bold;
-  text-align: left
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-left: 0.1rem;
+  /* margin-top: 0.5rem; */
+  background-image: url('../assets/back.png');
+  background-size: cover
+  /* font-size: 24px; */
+  /* padding-left: 0.2rem; */
+  /* font-weight: bold; */
+  /* text-align: left */
 }
 * {
   margin: 0;

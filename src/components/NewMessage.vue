@@ -1,7 +1,7 @@
 <template>
   <div id="newMessage">
     <div class="nav">
-      <div class="back" @click="backToProjectView"> < </div>
+      <div class="back" @click="backToProjectView"></div>
       <div class="navtitle">{{name}}动态</div>
     </div>
     <div class="position-box">
@@ -277,14 +277,19 @@ body {
 }
 .back{
   position: absolute;
-  text-align: left;
-  top: 0;
-  left: 8px;
+  width: 20px;
+  height: 20px;
+  left: 0;
+  top: 50%;
+  background-image: url('../assets/back.png');
+  background-size: cover;
+  transform: translate(0,-50%)
+  
+  /* text-align: left; */
+  /* top: 0; */
+  /* left: 8px; */
   /* padding-left: 8px; */
-  line-height: 40px;
-  height: 40px;
-  font-size: 32px;
-  width: 50px
+  /* line-height: 40px; */
 }
 .navtitle{
   text-align: center;

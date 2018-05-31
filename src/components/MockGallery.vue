@@ -148,6 +148,7 @@ export default {
 }
 
 .swiper-container {
+  transition-timing-function: cubic-bezier(0,0,1,1);
   position: absolute;
   top: 50%;
   /* left: 50%; */

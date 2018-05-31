@@ -8,9 +8,11 @@
           <div id="info">
             <p id="type">
               <span class="typeL">{{item.house_type_name}}</span>
-              <span class="typeR">{{item.property_area_min}}m
+              <!-- <span class="typeR">{{item.property_area_min}}m
                 <sup>2</sup>-{{item.property_area_max}}m
                 <sup>2</sup>
+              </span> -->
+              <span class="typeR">{{item.property_area_min}}㎡-{{item.property_area_max}}㎡
               </span>
             </p>
             <p class="type">{{item.house_type}}</p>
@@ -126,12 +128,14 @@ span.typeL {
 }
 p#type {
   font-size: 0.36rem;
-  position: relative;
+  /* position: relative; */
+  display: flex;
+  justify-content: space-between
 }
 span.typeR {
-  position: absolute;
-  top: -0.15rem;
-  right: 0.2rem;
+  /* position: absolute; */
+  /* top: -0.15rem; */
+  /* right: 0.2rem; */
   font-family: SourceHanSansCN-Regular;
   font-size: 0.001rem;
   font-weight: normal;
