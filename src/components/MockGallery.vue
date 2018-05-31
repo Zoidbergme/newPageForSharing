@@ -120,7 +120,7 @@ export default {
     this.swiper = new Swiper(".swiper-container", {
       observeParents:true,
       observer:true,
-      speed: 2000,
+      speed: 300,
       autoplay: false
     });
     this.swiper.on("slideChange", function(){
@@ -210,7 +210,7 @@ export default {
 .tag {
   padding: 0.1rem;
   background-color:white;
-  border: 1px solid #6495ed;
+  border: 1px solid #40a9ff;
   margin-right: 5px;
   border-radius: 1px;
 }
