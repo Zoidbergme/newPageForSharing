@@ -16,9 +16,12 @@
                 <li v-for="(pic,index) in pics" :key="index"></li>
               </ul>
             </div>
-            <div class="btn" @click="checkAllInfo(item.dynamic_id)">阅读全文&nbsp;>></div>
-            <div class="split" v-if="index !== items.length - 1"></div>
-            <div class="mockblank"></div>
+            <div class="awrapper">
+            <a :href="'http://120.27.21.136:2798/' + item.url" class="readall">阅读全文&nbsp;>></a>
+            </div>
+            <!-- <div class="btn" @click="checkAllInfo(item.dynamic_id)">阅读全文&nbsp;>></div> -->
+            <div class="split" ></div>
+            <!-- <div class="mockblank"></div> -->
           </li>
         </ul>
       </vue-better-scroll>
@@ -129,7 +132,7 @@ export default {
             this.currentPage
         )
         .then(res => {
-          // console.log(res.data)
+          console.log(res.data)
           return res.data;
         });
       // console.log(res)
@@ -201,11 +204,18 @@ body {
 /* .list-item{
   margin-bottom: 10px;
 } */
+.awrapper{
+  text-align: right;
+}
+.readall{
+  color: #000000
+}
 .nav {
   position: fixed;
   left: 0;
   right: 0;
   height: 40px;
+  border-bottom: 0.1px solid #eee
   /* background: red; */
 }
 .position-box {
@@ -222,6 +232,7 @@ body {
   /* min-height: 300px; */
   /* margin-left: 0.35rem; */
   margin-left: 8px;
+  margin-right: 8px;
 }
 /* .wrapper {
   margin-left: 0.35rem;
@@ -233,10 +244,11 @@ body {
 .title {
   /* height: 1.5rem;
   line-height: 1.5rem; */
-  height: 20px;
-  line-height: 20px;
+  height: 50px;
+  line-height: 50px;
   font-size: 16px;
   font-weight: bold;
+
 }
 .time {
   font-size: 12px;
@@ -259,6 +271,7 @@ body {
   height: 1.2rem;
   text-align: right;
   line-height: 1.2rem;
+  margin-bottom: 10px;
 }
 .split {
   height: 3px;

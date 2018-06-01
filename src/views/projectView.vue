@@ -15,15 +15,23 @@
           <a class="downLoad" href="http://itunes.apple.com/app/id1371978352?mt=8">下载APP</a>
         </div>
       </div>
-      <div class="banner_images" @click="goMockGallery">
+      <!-- <div class="banner_images" @click="goMockGallery">
         <ul>
           <li v-for="(imgs,index) in project_img" :key="index">
             <a href="javascript:;"><img v-bind:src="'http://120.27.21.136:2798/'+imgs.img_url" /></a>
           </li>
 
         </ul>
-        <div class="show"></div>
+      </div> -->
+      <div class="swiperbox">
+        <div class="swiper-container" @click="goMockGallery">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="(img,index) in project_img" :key="index" :style="{backgroundImage:'url(' + 'http://120.27.21.136:2798/' + img.img_url + ')'}"></div>
+          </div>
+        </div>
+        <div class="sign">{{idx}}/{{total}}</div>
       </div>
+      <!-- <div class="show"></div> -->
       <div class="house_detail space">
         <div class="house_name">
           <h4>
@@ -92,19 +100,20 @@
           </div>
           <div class="info_content">
             <font>最新开盘：</font>
-            <font>2017年02月20日</font>
+            <font>{{build_info.open_time}}</font>
           </div>
           <div class="info_content">
             <font>交房时间：</font>
-            <font>2019年02月</font>
+            <font>{{build_info.handing_room_time}}</font>
           </div>
-          <div class="info_content">
-            <font>产权：</font>
-            <font>70年</font>
-          </div>
+          <!-- <div class="info_content"> -->
+          <!-- <font>产权：</font> -->
+          <!-- <font>70年</font> -->
+          <!-- <font>70年</font> -->
+          <!-- </div> -->
         </div>
       </div>
-      <div class="project_news">
+      <div class="project_news space">
         <div class="head_mod">
           <h3>
             <font class="title">项目动态</font>&nbsp;
@@ -115,7 +124,7 @@
         <div class="project_notes">
           <a class="project_content">
             <h2>{{dynamic.first.title}}</h2>
-            <h2>{{dynamic.first.create_time}}</h2>
+            <h2 class="ctime">{{dynamic.first.create_time}}</h2>
             <p id="dy_content">{{dynamic.first.content}}</p>
             <div class="split"></div>
           </a>
@@ -123,11 +132,11 @@
 
       </div>
       <div class="project_img">
-        <h3>楼栋信息</h3>
+        <h3 class="space">楼栋信息</h3>
         <img v-bind:src="'http://120.27.21.136:2798/'+project_base_info.total_float_url" @click="checkBuildingPic" />
         <div class="house_info">
           <div class="head_mod">
-            <h3>户型信息</h3>
+            <h3 class="space">户型信息</h3>
             <!-- <a href="#">查看全部>></a> -->
           </div>
           <div id="scroll">
@@ -153,29 +162,29 @@
 
         </div>
         <ul id="map_btn">
-          <li>
+          <li class="anothercolorful">
             <a @click="shoplocal($event)" href="javascript:;">
-              <font>教育</font>
+              <font class="anothertxt1">教育</font>
             </a>
           </li>
-          <li>
+          <li class="anothercolorful">
             <a @click="shoplocal($event)" href="javascript:;">
-              <font>交通</font>
+              <font class="anothertxt2">交通</font>
             </a>
           </li>
-          <li>
+          <li class="anothercolorful">
             <a @click="shoplocal($event)" href="javascript:;">
-              <font>医院</font>
+              <font class="anothertxt3">医院</font>
             </a>
           </li>
-          <li>
+          <li class="anothercolorful">
             <a @click="shoplocal($event)" href="javascript:;">
-              <font>购物</font>
+              <font class="anothertxt4">购物</font>
             </a>
           </li>
-          <li>
+          <li class="anothercolorful">
             <a @click="shoplocal($event)" href="javascript:;">
-              <font>餐饮</font>
+              <font class="anothertxt5">餐饮</font>
             </a>
           </li>
         </ul>
@@ -186,7 +195,9 @@
 </template>
 
 <script>
-var mark = false;
+import Swiper from "swiper";
+import "swiper/dist/css/swiper.css";
+// var mark = false;
 export default {
   name: "projectView",
   data() {
@@ -203,12 +214,17 @@ export default {
       local: "",
       butter_tel: "",
       map: "",
-      project_id: ""
+      project_id: "",
+      idx: 1,
+      total: undefined
     };
   },
   methods: {
-    goMockGallery(){
-      this.$router.push({name:'gallery',query:{id:this.$route.query.id}})
+    goMockGallery() {
+      this.$router.push({
+        name: "gallery",
+        query: { id: this.$route.query.id }
+      });
     },
     checkBuildingPic() {
       let pic = this.data.project_basic_info.total_float_url_phone;
@@ -220,8 +236,11 @@ export default {
     },
     checkAllMessage() {
       let id = this.project_base_info.project_id;
-      let pname = this.project_base_info.project_name
-      this.$router.push({ name: "newMessage", query: { project_id: id ,pname} });
+      let pname = this.project_base_info.project_name;
+      this.$router.push({
+        name: "newMessage",
+        query: { project_id: id, pname }
+      });
     },
     getMoreDetails(house) {
       let id = house.id;
@@ -235,8 +254,8 @@ export default {
       this.show = false;
     },
     location() {
-      var latitude = this.project_base_info.latitude
-      var longitude = this.project_base_info.longitude
+      var latitude = this.project_base_info.latitude;
+      var longitude = this.project_base_info.longitude;
       this.map = new BMap.Map("allmap");
       this.map.centerAndZoom(new BMap.Point(longitude, latitude), 12);
       this.local = new BMap.LocalSearch(this.map, {
@@ -277,7 +296,7 @@ export default {
   },
   created() {
     var _this = this;
-    this.project_id = this.$route.query.id
+    this.project_id = this.$route.query.id;
     // this.project_id = this.GetQueryString("project_id");
     // this.project_id = this.project_id === null ? 1 : this.project_id;
     var url =
@@ -290,28 +309,39 @@ export default {
       type: "get",
       dataType: "json",
       success: function(res) {
-        console.log(res)
+        console.log(res);
+        _this.build_info = res.data.build_info;
         _this.data = res.data;
         _this.dynamic = res.data.dynamic;
         _this.focus = res.data.focus;
         _this.house_type = res.data.house_type;
         _this.project_base_info = res.data.project_basic_info;
         _this.project_img = res.data.project_img.url;
+        _this.total = _this.project_img.length;
         _this.cancle = res.data.project_basic_info.property_type;
         _this.butter_tel = res.data.butter_tel;
         _this.loadding = true;
-    // _this.$nextTick(_this.location)
+        _this.$nextTick(function() {
+          var swiper = new Swiper(".swiper-container", {
+            observeParents: true,
+            observer: true,
+            speed: 300,
+            autoplay: false
+          });
+          swiper.on("slideChange", function() {
+            _this.idx = swiper.activeIndex + 1;
+          });
+        });
+        // _this.$nextTick(_this.location)
       }
     });
- 
   },
-  mounted() {
-  },
+  mounted() {},
   updated() {
-      slider();
-    //   this.ajusctTextContent(".house_named", 4, "");
-    //   this.ajusctTextContent("#dy_content", 40, "");
-      this.location();
+    // slider();
+    // this.ajusctTextContent(".house_named", 4, "");
+    // this.ajusctTextContent("#dy_content", 40, "");
+    this.location();
   }
 };
 function obj(dynamic, project_base_info, house_type) {}
@@ -404,15 +434,28 @@ function slider() {
 <style scoped>
 @import "../assets/resetByHuang.css";
 
-.space{
-  padding: 0 0.3rem
+.sign {
+  position: absolute;
+  right: 0.3rem;
+  bottom: 0.3rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  z-index: 9999;
+  background-color: #fff !important;
+  font-size: 14px;
+  text-align: center;
+  line-height: 0.9rem
+}
+.space {
+  padding: 0 0.3rem;
 }
 
 div#scroll {
   width: 100%;
   overflow-x: auto;
 }
-.imgwrapper{
+.imgwrapper {
   display: -webkit-box;
 }
 #detail {
@@ -479,7 +522,7 @@ div#scroll {
   /* margin-left: 0.3rem; */
   /* margin-top: 0.32rem; */
   /* margin-right: 0.3rem; */
-  background-image: url('../assets/close.png');
+  background-image: url("../assets/close.png");
   background-size: cover;
   /* float:left; */
   /* font-weight: 400; */
@@ -791,7 +834,7 @@ div#scroll {
   width: 100%;
   display: flex;
   /* height: 1.5rem; */
-  height: 0.75rem;
+  height: 1rem;
 }
 #detail .info_detail .info_content font {
   float: left;
@@ -875,7 +918,7 @@ div.head_mod {
 #detail .around > h3 {
   width: 100%;
   /* padding: 0.5rem; */
-  padding: 0.3rem 0;
+  padding: 0.3rem;
   font-weight: 500;
   color: #666;
   font-size: 16px;
@@ -889,6 +932,7 @@ div.head_mod {
   /* padding: 0.5rem; */
 }
 #detail .project_img .house_type {
+  margin: 0 0.2rem;
   /* float: left; */
   /* width: 100%; */
 }
@@ -1065,11 +1109,44 @@ div.head_mod {
   line-height: 0.7rem;
   text-align: center;
   padding: 0 0.15rem;
-  margin: 0 0.15rem;
+  margin-right: 0.2rem;
+  /* margin: 0 0.15rem; */
 }
+.anothercolorful:nth-child(1) {
+  background: #d5f2ff;
+}
+.anothertxt1 {
+  color: #40a9ff !important;
+}
+.anothercolorful:nth-child(2) {
+  background: #eaf2ed;
+}
+.anothertxt2 {
+  color: #6cbba6;
+}
+.anothercolorful:nth-child(3) {
+  background: #d0f3f5;
+}
+.anothertxt3 {
+  color: #4fa6ab;
+}
+.anothercolorful:nth-child(4) {
+  background: #ffedd3;
+}
+.anothertxt4 {
+  color: #e78800;
+}
+.anothercolorful:nth-child(5) {
+  background: #ffb99e;
+}
+.anothertxt5 {
+  color: #c84e1f;
+}
+
 .colorful :nth-child(1) {
   color: #d5f2ff;
-  background: #40a9ff;
+  background: #1ea0e9;
+  /* background: #d5f2ff; */
 }
 .colorful :nth-child(2) {
   color: #6cbba6;
@@ -1111,5 +1188,34 @@ div.around {
 }
 a#call {
   height: 1.2rem;
+}
+.swiperbox{
+  position: relative;
+  width: 100%;
+  height: 5.5rem;
+}
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  /* height: 5.5rem; */
+  transition-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+.slide-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+}
+
+.ctime {
+  font-size: 12px !important;
 }
 </style>

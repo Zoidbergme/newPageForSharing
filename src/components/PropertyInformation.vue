@@ -168,6 +168,7 @@ export default {
 @import "../assets/reset.css";
 #detail {
   font-size: 14px;
+  margin: 0 0.3rem;
 }
 .split {
   width: 100%;
