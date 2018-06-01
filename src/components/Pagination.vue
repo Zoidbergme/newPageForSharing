@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="wrap" id="pagination">
     <ul id="box">
       <li id = 'list' v-for="(name,index) in names" :key="index"> <el-button class="btn" :type="index === indexC ? 'primary' : ''" @click.native = "switchIndex(index)">{{name}}</el-button> </li>
     </ul>
@@ -19,11 +19,11 @@ export default {
 };
 </script>
 
-<style scoped>
-.wrap {
+<style>
+#pagination .wrap {
   position: relative;
 }
-.wrap::after {
+#pagination .wrap::after {
   opacity: 0.23;
   position: absolute;
   content: "";
@@ -34,7 +34,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.23);
   z-index: 1;
 }
-#box {
+#pagination #box {
   position: relative;
   max-width: 9.6rem;
   margin: 0 auto;
@@ -46,11 +46,11 @@ export default {
   padding: 0.2rem 0;
   z-index: 999;
 }
-li#list {
+#pagination li#list {
   width: 1.5rem;
   height: 0.8rem;
 }
-button.el-button.btn {
+#pagination  button.el-button.btn {
   width: 100%;
   height: 100%;
   display: flex;
@@ -58,10 +58,10 @@ button.el-button.btn {
   align-items: center;
   padding: 0;
 }
-button.el-button.btn > span {
-  font-size: 0.36rem;
+#pagination  button.el-button.btn > span {
+  font-size: 12px;
 }
-#list .btn span {
+#pagination  #list .btn span {
   width: 1.03rem;
   height: 0.32rem;
 }

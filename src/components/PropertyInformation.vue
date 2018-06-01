@@ -203,7 +203,8 @@ ul li {
     height: 1rem;
     text-align: center;
     font-size: 16px;
-    line-height: 1rem
+    line-height: 1rem;
+    border-bottom: 1px solid #eee
 }
 .back{
     position: absolute;

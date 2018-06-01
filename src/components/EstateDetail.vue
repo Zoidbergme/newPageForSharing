@@ -1,7 +1,7 @@
 <template>
   <div>
     <ad></ad>
-    <div class="uniqueGetBack" @click="getBack">
+    <div class="uniqueGetBack" @click="getBack"><span class="back"></span> <span>户型详情</span>
     </div>
     <preview />
     <typesearch />
@@ -26,16 +26,27 @@ export default {
 </script>
 <style scoped>
 .uniqueGetBack{
-  width: 0.7rem;
-  height: 0.7rem;
-  margin-left: 0.1rem;
-  /* margin-top: 0.5rem; */
-  background-image: url('../assets/back.png');
-  background-size: cover
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 18px;
+  border-bottom: 0.1px solid #eee
   /* font-size: 24px; */
   /* padding-left: 0.2rem; */
   /* font-weight: bold; */
   /* text-align: left */
+}
+.back{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-left: 0.1rem;
+  /* margin-top: 0.5rem; */
+  background-image: url('../assets/back.png');
+  background-size: cover
 }
 * {
   margin: 0;

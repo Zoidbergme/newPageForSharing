@@ -119,12 +119,13 @@
             <font class="title">项目动态</font>&nbsp;
             <font style="color:#4CA0FF;">(共{{dynamic.count}}条)</font>
           </h3>
-          <a @click="checkAllMessage">查看全部>></a>
+          <a @click="checkAllMessage">查看更多>></a>
         </div>
         <div class="project_notes">
           <a class="project_content">
             <h2>{{dynamic.first.title}}</h2>
             <h2 class="ctime">{{dynamic.first.create_time}}</h2>
+            <div class="abstract">{{dynamic.first.abstract}}</div>
             <p id="dy_content">{{dynamic.first.content}}</p>
             <div class="split"></div>
           </a>
@@ -339,8 +340,8 @@ export default {
   mounted() {},
   updated() {
     // slider();
-    // this.ajusctTextContent(".house_named", 4, "");
-    // this.ajusctTextContent("#dy_content", 40, "");
+    this.ajusctTextContent(".house_named", 4, "");
+    // this.ajusctTextContent("#dy_content", 20, "");
     this.location();
   }
 };
@@ -433,6 +434,15 @@ function slider() {
 
 <style scoped>
 @import "../assets/resetByHuang.css";
+
+
+.abstract{
+  font-size: 12px;
+  margin-top: 0.1rem;
+  color: #999
+}
+
+
 
 .sign {
   position: absolute;
@@ -572,7 +582,7 @@ div#scroll {
   height: 0.8rem;
   line-height: 0.8rem;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   background: #fff;
   color: #1b98ff;
   border-radius: 0.125rem;
@@ -630,8 +640,8 @@ div#scroll {
 }
 .house_detail h4 font {
   float: left;
-  height: 2rem;
-  line-height: 2rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
 }
 .house_detail .house_state {
   /* font-size: 0.6rem; */
@@ -641,7 +651,7 @@ div#scroll {
 }
 .house_detail .house_title {
   color: #666;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 .fix {
@@ -749,9 +759,9 @@ div#scroll {
 #detail .house_detail .timer_content {
   float: left;
   width: 100%;
-  height: 1.2rem;
+  height: 1rem;
   text-align: center;
-  line-height: 1.2rem;
+  /* line-height: 1rem; */
   position: relative;
   margin-top: 0.1rem;
 }
@@ -769,7 +779,7 @@ div#scroll {
   color: #737373;
 }
 #detail .house_detail .house_price font:nth-child(2) {
-  font-size: 20px;
+  font-size: 16px;
   color: #ff4646;
 }
 #detail .house_detail .house_local font:nth-child(1) {
@@ -781,7 +791,7 @@ div#scroll {
   margin: auto 0;
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 31%;
   margin-top: -0.24rem;
 }
 .bulding_info {
@@ -789,12 +799,12 @@ div#scroll {
   width: 100%;
   margin-top: 0.2rem;
   /* height: 9.3125rem; */
-  height: 5rem;
+  height: 4.5rem;
   background: #fff;
   /* padding: 0.5rem; */
 }
 #detail .head_mod {
-  float: left;
+  /* float: left; */
   width: 100%;
   height: 1.5625rem;
   display: flex;
@@ -878,23 +888,23 @@ div.head_mod {
   /* margin-left: 1rem; */
 }
 #detail .project_notes {
-  float: left;
+  /* float: left; */
   width: 100%;
   /* margin-top: 0.5rem; */
 }
 #detail .project_notes a {
-  float: left;
+  /* float: left; */
   width: 100%;
   height: auto;
 }
 #detail .project_notes h2 {
-  float: left;
-  font-size: 16px;
+  /* float: left; */
+  font-size: 14px;
   width: 100%;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.5rem;
 }
 #detail .project_notes p {
-  float: left;
+  /* float: left; */
   font-size: 14px;
   width: 100%;
   padding-top: 0.1rem;
@@ -971,7 +981,7 @@ div.head_mod {
 }
 #detail .project_img .house_type_content div > font {
   text-align: right;
-  width: 2.2rem;
+  width: 3rem;
   /* font-size: 0.65rem; */
   font-size: 12px;
   text-align: left;
@@ -1078,7 +1088,7 @@ div.head_mod {
   display: flex;
   align-items: flex-start;
   width: 100%;
-  height: 1.5rem;
+  height: 2rem;
   font-size: 14px;
   /* border: 1px solid red */
 }
@@ -1089,14 +1099,14 @@ div.head_mod {
 }
 .houseCan {
   height: 0.7rem;
-  margin-bottom: 0.05rem;
+  margin-bottom: 0.1rem;
 }
 .split {
   overflow: hidden;
 }
 .houseFunction {
   height: 0.7rem;
-  margin-top: 0.15rem;
+  margin-top: 0.2rem;
 }
 .fullHeight {
   height: 100%;

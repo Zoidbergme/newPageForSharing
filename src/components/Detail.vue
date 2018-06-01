@@ -4,7 +4,7 @@
      <div id="basicInfo">
        <p id="type" >{{detailC.house_type_name}}</p>
        <p id="area">建筑面积：{{detailC.property_area_min + "m"}}<sup>2</sup>-{{detailC.property_area_max + "m"}}<sup>2</sup></p>
-       <p id="distribution">户型分布：</p>
+       <!-- <p id="distribution">户型分布：</p> -->
      </div>
      <div id="sellPoint">
          <p id="title">户型卖点:</p>
